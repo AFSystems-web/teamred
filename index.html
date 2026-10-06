@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Team Red — AI-продакшн агентство. Реклама, клипы, fashion и контент без съёмочной площадки. Контакты: Telegram, Instagram, почта.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:title" content="Team Red — AI-продакшн агентство">
+<meta property="og:description" content="Следующий кадр — ваш. Напишите — обсудим вашу идею.">
+<meta property="og:image" content="poster.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Team Red — AI-продакшн агентство</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&family=Unbounded:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+html { background: #0A0A0A; }
+/* layout: a viewfinder (the shot) beside the call-sheet (who to write to); stacks into one column on phones */
+:root {
+  --black: #0A0A0A;
+  --ink: #141011;
+  --bone: #EDE8E0;
+  --muted: rgba(237, 232, 224, .58);
+  --line: rgba(237, 232, 224, .13);
+  --red: #FF2020;
+  --red-soft: rgba(255, 32, 32, .16);
+  --f-display: "Unbounded", system-ui, sans-serif;
+  --f-body: "Onest", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(255, 32, 32, .22), transparent 60%),
+    radial-gradient(80% 50% at 100% 110%, rgba(255, 32, 32, .10), transparent 60%),
+    var(--black);
+  background-attachment: fixed;
+  color: var(--bone);
+  font: 400 16px/1.5 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--red); color: var(--black); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 10px; }
+.mono { font: 500 11px/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; }
+
+.page {
+  max-width: 1160px; margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(20px, 5vh, 64px);
+  min-height: 100vh; min-height: 100dvh;
+  display: grid; align-content: center; gap: clamp(24px, 4vh, 40px);
+}
+.stage { display: grid; gap: clamp(24px, 4vw, 64px); align-items: center; grid-template-columns: 1fr; }
+@media (min-width: 880px) { .stage { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
+
+/* ---------- the viewfinder ---------- */
+.shot { position: relative; aspect-ratio: 4 / 5; max-width: 100%; max-height: 72vh; margin-inline: auto; width: 100%; border-radius: 22px; overflow: hidden; background: var(--ink); isolation: isolate; }
+@media (max-width: 879px) { .shot { aspect-ratio: 4 / 3.4; max-height: 46vh; } }
+.shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(1.04); }
+.shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.45), transparent 26%, transparent 70%, rgba(10,10,10,.6)); pointer-events: none; }
+.vf { position: absolute; inset: 0; z-index: 2; pointer-events: none; padding: clamp(14px, 2.4vw, 22px); display: grid; grid-template-rows: auto 1fr auto; }
+.vf i { position: absolute; width: 28px; height: 28px; border: 2.5px solid rgba(255,255,255,.88); }
+.vf i:nth-child(1) { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+.vf i:nth-child(2) { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+.vf i:nth-child(3) { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+.vf i:nth-child(4) { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+.vf-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+.rec { display: inline-flex; align-items: center; gap: 9px; }
+.rec b { width: 11px; height: 11px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); animation: blink 1s steps(2, jump-none) infinite; }
+.tc { font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.focus { place-self: center; width: 22%; aspect-ratio: 3 / 2; border: 1.5px solid rgba(255,255,255,.6); border-radius: 4px; }
+@keyframes blink { 50% { opacity: .2; } }
+
+/* ---------- the call sheet ---------- */
+.sheet { display: grid; gap: clamp(18px, 3vh, 28px); min-width: 0; }
+.logo { width: min(100%, 440px); height: auto; }
+.logo .letters { fill: var(--bone); }
+.logo .dot { fill: var(--red); filter: drop-shadow(0 0 14px rgba(255, 32, 32, .7)); }
+.tag { display: inline-flex; align-items: center; gap: 10px; width: fit-content; padding: 8px 14px 8px 12px; border-radius: 99px; border: 1px solid var(--line); background: rgba(237,232,224,.05); color: var(--muted); }
+.tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+h1 { margin: 0; font: 800 clamp(30px, 5.2vw, 58px)/1.04 var(--f-display); letter-spacing: -.02em; text-wrap: balance; }
+h1 span { color: var(--red); text-shadow: 0 0 28px rgba(255, 32, 32, .45); }
+.lead { margin: 0; color: var(--muted); font-size: clamp(16px, 1.6vw, 18px); max-width: 38ch; }
+
+.links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.row {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  padding: 12px 12px 12px 14px; border-radius: 18px;
+  background: linear-gradient(180deg, rgba(237,232,224,.06), rgba(237,232,224,.025));
+  border: 1px solid var(--line);
+  transition: border-color .35s var(--ease), background .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.row:hover, .row:focus-within { border-color: rgba(255, 32, 32, .55); background: linear-gradient(180deg, var(--red-soft), rgba(255,32,32,.04)); box-shadow: 0 10px 40px -18px rgba(255, 32, 32, .6); }
+.ico { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: rgba(237,232,224,.07); color: var(--bone); transition: background .35s var(--ease), color .35s var(--ease); }
+.row:hover .ico, .row:focus-within .ico { background: var(--red); color: var(--black); }
+.ico svg { width: 21px; height: 21px; }
+.who { min-width: 0; display: grid; gap: 3px; }
+.who .mono { color: var(--muted); font-size: 10.5px; }
+.handle { font: 600 clamp(15px, 1.9vw, 19px)/1.25 var(--f-display); letter-spacing: -.005em; overflow-wrap: anywhere; user-select: all; }
+#mail { font-size: clamp(13px, 1.45vw, 16px); }
+.acts { display: flex; gap: 6px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 14px; border-radius: 99px;
+  border: 1px solid var(--line); background: rgba(237,232,224,.04); cursor: pointer; white-space: nowrap;
+  font: 500 13px/1 var(--f-body); color: var(--bone);
+  transition: background .25s, border-color .25s, color .25s;
+}
+.btn:hover { border-color: rgba(237,232,224,.35); }
+.btn.go { background: var(--bone); color: var(--black); border-color: var(--bone); }
+.btn.go:hover { background: var(--red); border-color: var(--red); color: var(--black); }
+.btn.copied { background: var(--red); border-color: var(--red); color: var(--black); }
+.btn svg { width: 14px; height: 14px; }
+@media (max-width: 479px) {
+  .row { grid-template-columns: 40px minmax(0, 1fr); row-gap: 12px; }
+  .ico { width: 40px; height: 40px; }
+  .acts { grid-column: 1 / -1; }
+  .acts .btn { flex: 1; justify-content: center; }
+}
+
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+/* entrance: content is visible at rest; it only settles in */
+@media (prefers-reduced-motion: no-preference) {
+  .sheet > *, .shot { animation: rise .9s var(--ease) both; }
+  .sheet > *:nth-child(2) { animation-delay: .06s; } .sheet > *:nth-child(3) { animation-delay: .12s; }
+  .sheet > *:nth-child(4) { animation-delay: .18s; } .sheet > *:nth-child(5) { animation-delay: .24s; }
+  @keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { .rec b { animation: none; } }
+</style>
+
+</head>
+<body>
+<main class="page">
+  <section class="stage">
+    <figure class="shot" aria-label="Шоурил Team Red" style="margin:0">
+      <video id="reel" src="reel.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+      <div class="vf" aria-hidden="true">
+        <i></i><i></i><i></i><i></i>
+        <div class="vf-row mono"><span class="rec"><b></b>REC</span><span class="tc" id="tc">00:00:00:00</span></div>
+        <div class="focus"></div>
+        <div class="vf-row mono"><span>Сцена 02 · Дубль 01</span><span>4K · 24 FPS</span></div>
+      </div>
+    </figure>
+
+    <div class="sheet">
+      <svg class="logo" viewBox="0 0 622 100" role="img" aria-label="Team Red">
+        <g class="letters">
+          <path d="M0 0H70V20H45V100H25V20H0Z"/>
+          <path d="M82 0H142V20H102V40H136V60H102V80H142V100H82Z"/>
+          <path d="M154 100L184 0H204L234 100H213L194 33L175 100Z M160 80L164.8 64H223.2L228 80Z"/>
+          <path d="M246 0H270L291 52L312 0H336V100H316V45L300 84H282L266 45V100H246Z"/>
+          <path d="M372 0H418V20H392V100H372Z"/>
+          <path d="M400 46H423L448 100H425Z"/>
+          <path d="M460 0H520V20H480V40H514V60H480V80H520V100H460Z"/>
+          <path fill-rule="evenodd" d="M532 0H572A50 50 0 0 1 572 100H532Z M552 20V80H572A30 30 0 0 0 572 20Z"/>
+        </g>
+        <circle class="dot" cx="418" cy="28" r="28"/>
+      </svg>
+      <span class="tag mono">AI-продакшн агентство</span>
+      <h1>Следующий кадр — <span>ваш.</span></h1>
+      <p class="lead">Напишите — обсудим вашу идею. Реклама, клипы, fashion и контент без съёмочной площадки.</p>
+
+      <ul class="links">
+        <li class="row">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6 18.7 19.7c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.4 1.4 11.9c-1-.3-1.1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1.5Z"/></svg></span>
+          <span class="who"><span class="mono">Telegram</span><span class="handle">@xt1nkt</span></span>
+          <span class="acts">
+            <button class="btn" type="button" data-copy="@xt1nkt" aria-label="Скопировать ник в Telegram">Копировать</button>
+            <a class="btn go" href="https://t.me/xt1nkt" target="_blank" rel="noopener">Написать <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+          </span>
+        </li>
+        <li class="row">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+          <span class="who"><span class="mono">Instagram</span><span class="handle">@savd.prod</span></span>
+          <span class="acts">
+            <button class="btn" type="button" data-copy="@savd.prod" aria-label="Скопировать Instagram">Копировать</button>
+            <a class="btn go" href="https://www.instagram.com/savd.prod/" target="_blank" rel="noopener">Открыть <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+          </span>
+        </li>
+        <li class="row">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span>
+          <span class="who"><span class="mono">Почта</span><span class="handle" id="mail">dsav4nko73@gmail.com</span></span>
+          <span class="acts">
+            <button class="btn" type="button" data-copy="dsav4nko73@gmail.com" aria-label="Скопировать адрес почты">Копировать</button>
+            <a class="btn go" href="mailto:dsav4nko73@gmail.com">Письмо <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot mono">
+    <span>Team Red · AI Production</span>
+    <span>Снимаем без камеры</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  // running timecode, like the viewfinder in the promo
+  var tc = document.getElementById("tc"), t0 = performance.now();
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function tick(now) {
+    var f = Math.floor((now - t0) / 1000 * 24), s = Math.floor(f / 24);
+    tc.textContent = pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s / 60) % 60) + ":" + pad(s % 60) + ":" + pad(f % 24);
+    if (!reduce) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // muted autoplay can be refused in some views: start on the first tap instead
+  var v = document.getElementById("reel");
+  if (reduce) { v.removeAttribute("autoplay"); v.pause(); }
+  else { var p = v.play && v.play(); if (p && p.catch) p.catch(function () { document.addEventListener("pointerdown", function once() { v.play().catch(function(){}); document.removeEventListener("pointerdown", once); }); }); }
+
+  // copy buttons
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var text = b.getAttribute("data-copy"), label = b.textContent;
+      function done() { b.textContent = "Скопировано"; b.classList.add("copied"); setTimeout(function () { b.textContent = label; b.classList.remove("copied"); }, 1600); }
+      function fallback() {
+        var h = b.closest(".row").querySelector(".handle"), r = document.createRange();
+        r.selectNodeContents(h); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        b.textContent = "Выделено — скопируйте"; setTimeout(function () { b.textContent = label; }, 2200);
+      }
+      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
